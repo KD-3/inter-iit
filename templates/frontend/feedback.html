@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,14 +67,19 @@
                             <li><a href="{% url 'projects' %}" class="nav-link">Projects</a></li>
                             <li class="active"><a href="{% url 'feedback' %}" class="nav-link">Feedback</a></li>
 
-                            <li class="has-children">
-                                <a href="{% url 'register' %}" class="nav-link">Register</a>
-                                <ul class="dropdown">
-                                    <li><a href="register-contractor.html" class="nav-link">Register as a contractor</a></li>
-                                    <li><a href="register-citizen.html" class="nav-link">Register as a citizen</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="{% url 'login' %}" class="nav-link">Login</a></li>
+{#                            <li class="has-children">#}
+                            {#                                <a href="{% url 'register' %}" class="nav-link">Register</a>#}
+                            {#                                <ul class="dropdown">#}
+                            {#                                    <li><a href="register-contractor.html" class="nav-link">Register as a contractor</a></li>#}
+                            {#                                    <li><a href="register-citizen.html" class="nav-link">Register as a citizen</a></li>#}
+                            {#                                </ul>#}
+                            {#                            </li>#}
+                            {#                            <li><a href="{% url 'login' %}" class="nav-link">Login</a></li>#}
+                            {% if user.is_authenticated %}
+                                <li><a href="{% url 'account_logout' %}" class="nav-link">Logout</a></li>
+                                {% else %}
+                                <li><a href="{% url 'account_login' %}" class="nav-link">Login</a></li>
+                            {% endif %}
                         </ul>
                     </nav>
                 </div>
